@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mciot_wearable/appbar_drawer.dart';
+import 'package:mciot_wearable/data_analyzer.dart';
 import 'package:mciot_wearable/earable_info.dart';
 import 'package:mciot_wearable/graphs.dart';
 import 'package:mciot_wearable/workout.dart';
@@ -18,8 +19,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+	static DataAnalyzer da = new DataAnalyzer();
 
-	Widget body = EarableInfo();
 
 	@override
 	void initState() {
@@ -28,14 +29,13 @@ class _MyAppState extends State<MyApp> {
 
 	Widget build(BuildContext context) {
 		return MaterialApp(
-//			color: Color.fromARGB(255, 246, 178, 33),
 			theme: ThemeData(),
 			darkTheme: ThemeData.dark(),
-			home: new AppbarDrawer("eSense Info", new EarableInfo()),
+			home: new AppbarDrawer("Workout", new Workout(da)),
 			routes: <String, WidgetBuilder>{
-				'/workout': (BuildContext context) => new AppbarDrawer("Workout", new Workout()),
+				'/workout': (BuildContext context) => new AppbarDrawer("Workout", new Workout(da)),
 				'/info': (BuildContext context) => new AppbarDrawer("eSense Info", new EarableInfo()),
-				'/graphs': (BuildContext context) => new AppbarDrawer("Graphs", new Graphs()),
+				'/graphs': (BuildContext context) => new AppbarDrawer("Graphs", new Graphs(da)),
 			},
 		);
 	}

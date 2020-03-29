@@ -41,6 +41,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<key>NSBluetoothAlwaysUsageDescription</key>
     <string>Uses bluetooth to connect to the eSense device</string>
     <key>UIBackgroundModes</key>

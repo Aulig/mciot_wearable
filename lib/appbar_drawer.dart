@@ -18,10 +18,23 @@ class AppbarDrawer extends StatelessWidget {
 			drawer: new Drawer(
 				child: new ListView(
 					children: <Widget>[
+						DrawerHeader(
+							decoration: BoxDecoration(
+								color: Colors.blue,
+							),
+							child: Text(
+								'Drawer Header',
+								style: TextStyle(
+									color: Colors.white,
+									fontSize: 24,
+								),
+							),
+						),
 						ListTile(
 							title: Text("Workout",
 								style: new TextStyle(fontSize: 16,),
 							),
+							leading: new Icon(Icons.directions_run),
 							onTap: () {
 								Navigator.pop(context);
 
@@ -32,6 +45,7 @@ class AppbarDrawer extends StatelessWidget {
 							title: Text("Graphs",
 								style: new TextStyle(fontSize: 16,),
 							),
+							leading: new Icon(Icons.show_chart),
 							onTap: () {
 								Navigator.pop(context);
 
@@ -42,6 +56,7 @@ class AppbarDrawer extends StatelessWidget {
 							title: Text("eSense Info",
 								style: new TextStyle(fontSize: 16,),
 							),
+							leading: new Icon(Icons.info),
 							onTap: () {
 								Navigator.pop(context);
 

@@ -1,15 +1,26 @@
 class DataAnalyzer {
 
+	var _times = [];
 	var _values = [];
 	var _smoothedValues = [];
 	var _averagedValues = [];
+	var detections = [];
 
 	static const int TREND_LENGTH_FOR_PEAK = 10;
-	static const int LAG = 20;
+	static const int LAG = 15;
 	static const double ALPHA = 0.4;
+
+	void clearData() {
+
+		_times = [];
+		_values = [];
+		_smoothedValues = [];
+		_averagedValues = [];
+	}
 
 	void addValue(int value) {
 		_values.add(value);
+		_times.add(DateTime.now());
 
 		if (_smoothedValues.isEmpty) {
 			_smoothedValues.add(value);
@@ -31,6 +42,9 @@ class DataAnalyzer {
 	}
 
 	int countPeaks() {
+
+		detections = [];
+
 		int peaks = 0;
 
 		int upwardsTrendLength = 0;
@@ -54,6 +68,7 @@ class DataAnalyzer {
 
 				if (downwardsTrendLength > TREND_LENGTH_FOR_PEAK) {
 					if (upwardsTrendLength > TREND_LENGTH_FOR_PEAK) {
+						detections.add(i - 1);
 						peaks++;
 					}
 
@@ -64,4 +79,58 @@ class DataAnalyzer {
 
 		return peaks;
 	}
+
+	List<AccelerationAtTime> getData() {
+
+		List<AccelerationAtTime> data = [];
+
+		for (int i = 0; i < _values.length; i++) {
+
+			data.add(new AccelerationAtTime(_times[i], _values[i].toDouble()));
+		}
+
+		return data;
+	}
+	List<AccelerationAtTime> getSmoothedData() {
+
+		List<AccelerationAtTime> data = [];
+
+		for (int i = 0; i < _smoothedValues.length; i++) {
+
+			data.add(new AccelerationAtTime(_times[i], _smoothedValues[i].toDouble()));
+		}
+
+		return data;
+	}
+	List<AccelerationAtTime> getAveragedData() {
+
+		List<AccelerationAtTime> data = [];
+
+		for (int i = 0; i < _averagedValues.length; i++) {
+
+			data.add(new AccelerationAtTime(_times[i], _averagedValues[i].toDouble()));
+		}
+
+		return data;
+	}
+
+	List<AccelerationAtTime> getDetections() {
+
+		List<AccelerationAtTime> data = [];
+
+		for (int i = 0; i < detections.length; i++) {
+
+			data.add(new AccelerationAtTime(_times[detections[i]], 0));
+		}
+
+		return data;
+	}
+}
+
+class AccelerationAtTime {
+
+	final DateTime time;
+	final double acceleration;
+
+	AccelerationAtTime(this.time, this.acceleration);
 }

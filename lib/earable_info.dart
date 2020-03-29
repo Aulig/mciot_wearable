@@ -158,7 +158,8 @@ class _EarableInfoState extends State {
 							child: Text("Connect"),
 							onPressed: () {
 
-								OwnEsenseManager
+								//TODO
+
 							},
 						),
 					],
