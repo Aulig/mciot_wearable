@@ -5,7 +5,7 @@ Created alongside https://github.com/Aulig/Aulig.github.io for the great Mobile 
 
 ## Main Screen:
 
-![Main Screen](https://i.imgur.com/4kA6gCL.png)
+![Main Screen](https://i.imgur.com/d9cHFLI.png)
 
 ## Graph Screen
 The pushup detection works by collecting the earables acceleration along the x-axis (=raw data, red line) and searching for peaks in the filtered data (green line). This data can be viewed in the app after finishing a sequence of pushups and is displayed using charts_flutter.
