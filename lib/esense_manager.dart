@@ -85,6 +85,7 @@ class OwnEsenseManager {
 
 		ESenseManager.connectionEvents.listen((event) {
 			// when we're connected to the eSense device, we can start listening to events from it
+			//TODO handle all of this correctly
 			switch (event.type) {
 				case ConnectionType.connected:
 					completer.complete(true);

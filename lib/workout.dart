@@ -32,33 +32,30 @@ class _WorkoutState extends State {
 	OwnEsenseManager esenseManager = new OwnEsenseManager();
 
 	Future<void> startSession(String pushupCount) async {
-
 		da.clearData();
 
 		await esenseManager.showConnectDialog(context, false);
 
 		int pucount = int.parse(pushupCount);
 
-		Timer(Duration(seconds: 10), () {
-			audioCache.play("bell.mp3");
-		});
-
-
 		int lastCount = 0;
 
+		bool started = false;
+
 		esenseManager.getSensorSubscription((event) {
+			if (!started) {
+				audioCache.play("bell.mp3");
+				started = true;
+			}
 
 			if (lastCount < pucount) {
-
 				da.addValue(event.accel[0]);
 
 				int p = da.countPeaks();
 
 				if (p > lastCount) {
-
 					lastCount = p;
 					if (p == pucount) {
-
 						audioCache.play("bell.mp3");
 					}
 				}
