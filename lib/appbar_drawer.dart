@@ -22,7 +22,13 @@ class AppbarDrawer extends StatelessWidget {
 							decoration: BoxDecoration(
 								color: Colors.blue,
 							),
-							child: new Icon(Icons.tag_faces, size: 54,),
+							child: Text(
+								'Drawer Header',
+								style: TextStyle(
+									color: Colors.white,
+									fontSize: 24,
+								),
+							),
 						),
 						ListTile(
 							title: Text("Workout",
@@ -62,4 +68,5 @@ class AppbarDrawer extends StatelessWidget {
 			),
 		);;
 	}
+
 }
